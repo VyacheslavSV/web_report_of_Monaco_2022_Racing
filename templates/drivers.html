@@ -6,8 +6,8 @@
 </head>
 <body>
 <ul>
-{% for dr in drivers %}
-<li>{{ dr|e }}</li>
+{% for c in diction %}
+    <li><a href="{{url_for('page', driver_id=c.driver_id) }}">{{c.driver_id}}</a> {{c.name}}</li>
 {% endfor %}
 </ul>
 </body>

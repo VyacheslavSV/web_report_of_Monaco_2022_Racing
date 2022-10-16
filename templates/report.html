@@ -6,8 +6,8 @@
 </head>
 <body>
 <ul>
-{% for dr in result %}
-<li>{{ dr|e }}</li>
+{% for c in diction %}
+<li>{{', '.join(c)}}</li>
 {% endfor %}
 </ul>
 </body>
