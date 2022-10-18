@@ -15,20 +15,19 @@ def drivers_cod_name_dict(data):
 
 
 def fine(k):
-    for dik in dict_all_info:
-        if dik['driver_id'] == k:
-            return dik.get(k)
+    for dikts in dict_all_info:
+        if dikts['driver_id'] == k:
+            return dikts.get(k)
 
-
-app = Flask(__name__)
 
 result = build_report('files')
 dict_all_info = drivers_cod_name_dict(result)
 dict_all_info_reverse = sorted(dict_all_info, key=lambda d: d['driver_id'], reverse=True)
+app = Flask(__name__)
 
 
 @app.route('/report')
-def index():
+def report():
     return render_template('report.html', title='Common statistic', diction=result)
 
 
@@ -48,7 +47,7 @@ def drivers():
                                diction=dict_all_info)
 
 
-@app.route('/page/', methods=['GET', 'POST'])
+@app.route('/page/', methods=['GET'])
 def page():
     driver_id = request.args.get('driver_id')
     if None is not driver_id:
