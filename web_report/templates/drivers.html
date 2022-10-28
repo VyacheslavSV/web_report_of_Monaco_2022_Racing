@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{%if driver_data%}
+<b>{{driver_data}}</b>
+{%else%}
+{%macro list_result(list_lines)%}
+<ul>
+{% for line in result %}
+<li><a href ="{{url_for('driver', driver_id = line[0])}}">{{caller(line).strip()[0:7]}}</a>, {{line[0]}} </li>
+{% endfor %}
+</ul>
+{%endmacro%}
+{%call(line) list_result(result)%}
+{%for w in line[0].split()+line[1].split()%}
+{{"".join((w[0]))}}
+{%endfor%}
+{%endcall%}
+{% endif %}
+</body>
+</html>
