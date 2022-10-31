@@ -25,10 +25,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/hello11')
-    def hello1():
-        return 'Hello, World11!'
-
     @app.route('/report/', methods=['GET'])
     def report():
         order = request.args.get('order')
