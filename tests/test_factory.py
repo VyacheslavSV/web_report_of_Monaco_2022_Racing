@@ -8,19 +8,6 @@ def test_config():
     assert create_app({'TESTING': True}).testing
 
 
-def test_hello(client):
-    response = client.get('/hello')
-    assert response.data == b'Hello, World!'
-
-
-def test_hello1(client):
-    response = client.get('/hello11')
-    assert response.data == b'Hello, World11!'
-
-
-# def test_request_example(client):
-#     response = client.get("/report/")
-#     assert b"<h2>Hello, World!</h2>" in response.data
 def test_report(client):
     response = client.get('/report/')
     assert response.data == (b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <'

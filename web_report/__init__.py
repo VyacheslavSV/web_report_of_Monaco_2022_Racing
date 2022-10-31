@@ -1,10 +1,11 @@
 import os
 from pathlib import Path
-from flask import Flask, render_template, request, app
+from flask import Flask, render_template, request
 from svvs_report import build_report, find_driver
 from flask import Flask
 
 FILES = Path('../files')
+
 
 def create_app(test_config=None):
     # create and configure the app
@@ -24,13 +25,10 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
     @app.route('/hello11')
     def hello1():
         return 'Hello, World11!'
+
     @app.route('/report/', methods=['GET'])
     def report():
         order = request.args.get('order')
@@ -57,8 +55,5 @@ def create_app(test_config=None):
             return render_template('drivers.html', result=build_report(FILES, 'desc'))
         else:
             return render_template('drivers.html', result=result)
-
-
-
 
     return app
