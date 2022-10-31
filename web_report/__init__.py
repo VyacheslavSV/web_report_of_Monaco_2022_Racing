@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from flask import Flask, render_template, request
 from svvs_report import build_report, find_driver
@@ -19,11 +18,6 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
 
     @app.route('/report/', methods=['GET'])
     def report():

@@ -113,8 +113,20 @@ def test_driver_order(client):
 
 
 def test_driver_driver_id(client):
-    response = client.post('/driver/', query_string={'driver_id': 'SVF'})
-    assert response.data == 'Sebastian Vettel, FERRARI, 0:01:04.415000'
+    response = client.get('/driver/', query_string={'driver_id': 'SVF'})
+    assert response.text == ('<!DOCTYPE html>\n'
+                             '<html lang="en">\n'
+                             '<head>\n'
+                             '    <meta charset="UTF-8">\n'
+                             '    <title></title>\n'
+                             '</head>\n'
+                             '<body>\n'
+                             '\n'
+                             '<b>(&#39;Sebastian Vettel&#39;, &#39;FERRARI&#39;, '
+                             '&#39;0:01:04.415000&#39;)</b>\n'
+                             '\n'
+                             '</body>\n'
+                             '</html>')
 
 
 
