@@ -1,18 +1,18 @@
 import pytest
 from flask import Flask
-import web_report.web_rep_app
+from web_report import create_app
 
 
-def test_report(test_client, captured_templates):
+def test_report(client):
     app = Flask(__name__)
-    configure_routes(app)
-    client = app.test_client()
-    url = '/report'
+    response = client.get('/report1/')
+    assert response.data == 200
 
-    response = client.get(url)
-    assert response.get_data() == q
-    assert response.status_code == 200
-#
+#app = flask.Flask(__name__)
+
+# with app.test_request_context('/?name=Peter'):
+#     assert flask.request.path == '/'
+#     assert flask.request.args['name'] == 'Peter'
 #
 
 
