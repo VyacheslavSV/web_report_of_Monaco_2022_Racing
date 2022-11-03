@@ -7,7 +7,8 @@ from werkzeug.exceptions import abort
 
 bp = Blueprint('hello', __name__)
 
-FILES = Path('.../files')
+ROOT = Path(__file__).resolve().parent
+FILES = ROOT / 'files'
 
 
 @bp.route('/report/')
@@ -16,9 +17,9 @@ def report():
     files = request.args.get('files', FILES)
     result = build_report(files, order)
     if order == 'desc':
-        return render_template('report.html', result=build_report(FILES, 'desc'))
-    elif files == isinstance(files, str):
-        return render_template('report.html', result=build_report(str))
+        return render_template('report.html', result=build_report(files, 'desc'))
+    elif files:
+        return render_template('report.html', result=build_report(files))
     else:
         return render_template('report.html', result=result)
 
@@ -34,6 +35,8 @@ def driver():
         driver_data = find_driver(result, driver_id)
         return render_template('drivers.html', driver_data=driver_data)
     elif order == 'desc':
-        return render_template('drivers.html', result=build_report(FILES, 'desc'))
+        return render_template('drivers.html', result=build_report(files, 'desc'))
+    elif files:
+        return render_template('report.html', result=build_report(files))
     else:
         return render_template('drivers.html', result=result)
