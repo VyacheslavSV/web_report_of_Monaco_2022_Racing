@@ -28,6 +28,6 @@ def driver():
 
     if driver_id:
         driver_data = find_driver(result, driver_id)
-        return render_template('drivers.html', driver_data=driver_data)
-    else:
-        return render_template('drivers.html', result=result)
+        render_template('driver.html', driver_data=driver_data)
+    return render_template('drivers.html', driver_data=result)
+
