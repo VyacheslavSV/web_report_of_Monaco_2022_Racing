@@ -16,12 +16,7 @@ def report():
     order = request.args.get('order')
     files = request.args.get('files', FILES)
     result = build_report(files, order)
-    if order == 'desc':
-        return render_template('report.html', result=build_report(files, 'desc'))
-    elif files:
-        return render_template('report.html', result=build_report(files))
-    else:
-        return render_template('report.html', result=result)
+    return render_template('report.html', result=result)
 
 
 @bp.route('/driver/')
@@ -34,9 +29,5 @@ def driver():
     if driver_id:
         driver_data = find_driver(result, driver_id)
         return render_template('drivers.html', driver_data=driver_data)
-    elif order == 'desc':
-        return render_template('drivers.html', result=build_report(files, 'desc'))
-    elif files:
-        return render_template('report.html', result=build_report(files))
     else:
         return render_template('drivers.html', result=result)
