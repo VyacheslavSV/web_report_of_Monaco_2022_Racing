@@ -5,10 +5,11 @@
     <title>{{ title }}</title>
 </head>
 <body>
-<ul>
+
+<ol>
 {% for line in result %}
-<li>{{', '.join(line)}}</li>
+    <li><em>{{line[0]}}</em> <b>{{line[1]}}</b></b>  <time>{{line[2]}}</time></li>
 {% endfor %}
-</ul>
+</ol>
 </body>
 </html>
