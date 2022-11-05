@@ -5,17 +5,12 @@
     <title>{{ title }}</title>
 </head>
 <body>
-{%macro list_result(list_lines)%}
 <ul>
-{% for line in driver_data %}
-<li><a href ="{{url_for('.driver', driver_id = line[0])}}"><abbr>{{caller(line).strip()[0:7]}}</abbr></abbr></a>, {{line[0]}} </li>
-{% endfor %}
+    {% for line in driver_data %}
+    <li><a href="{{url_for('.driver', driver_id = line[0])}}">
+        <abbr>{{(line[0].split()[0])[0]+(line[0].split()[1])[0]+(line[1].split()[0])[0]}}</abbr></a>
+        <em>{{line[0]}}</em></li>
+    {% endfor %}
 </ul>
-{%endmacro%}
-{%call(line) list_result(driver_data)%}
-{%for w in line[0].split()+line[1].split()%}
-{{"".join((w[0]))}}
-{%endfor%}
-{%endcall%}
 </body>
 </html>
