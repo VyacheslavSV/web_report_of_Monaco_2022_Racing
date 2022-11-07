@@ -12,23 +12,19 @@ FILES = ROOT / 'files'
 
 @bp.route('/report/')
 def report():
-    order = request.args.get('order')
     files = request.args.get('files', FILES)
+    order = request.args.get('order')
     result = build_report(files, order)
     return render_template('report.html', result=result)
 
 
 @bp.route('/driver/')
 def driver():
-    order = request.args.get('order')
     files = request.args.get('files', FILES)
+    order = request.args.get('order')
     driver_id = request.args.get('driver_id')
     result = build_report(files, order)
     if not driver_id:
         return render_template('drivers.html', driver_data=result)
     driver_data = find_driver(result, driver_id)
     return render_template('driver.html', driver_data=driver_data)
-
-
-
-

@@ -7,8 +7,8 @@
 <body>
 <ol>
     {% for line in driver_data %}
-    <li><a href="{{url_for('.driver', driver_id = line[0])}}">
-        <abbr>{{(line[0].split()[0])[0]+(line[0].split()[1])[0]+(line[1].split()[0])[0]}}</abbr></a>
+    <li><a href="{{url_for('.driver', driver_id = line[3])}}">
+        <abbr>{{line[3]}}</abbr></a>
         <em>{{line[0]}}</em></li>
     {% endfor %}
 </ol>
